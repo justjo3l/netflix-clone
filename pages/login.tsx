@@ -1,7 +1,9 @@
 import Head from "next/head"
 import Image from "next/image"
+import { useRouter } from "next/router";
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form";
+import Loader from "../components/Loader";
 import useAuth from "../hooks/useAuth";
 
 interface Inputs {
@@ -11,7 +13,8 @@ interface Inputs {
 
 function login() {
     const [login, setLogin] = useState(false)
-    const {signIn, signUp} = useAuth()
+    const {user, signIn, signUp} = useAuth()
+    const router = useRouter()
 
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
@@ -22,6 +25,15 @@ function login() {
             await signUp(data.email, data.password)
         }
     };
+
+    if (user) {
+        router.push('/')
+        return (
+        <div className="flex h-screen w-screen items-center justify-center">
+            <Loader color="dark:fill-[#e50914]"/>
+        </div>
+        )
+    }
 
   return (
     <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">

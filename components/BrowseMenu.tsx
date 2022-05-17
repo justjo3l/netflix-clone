@@ -3,12 +3,13 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 
-export default function BasicMenu() {
+export default function BrowseMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
+    console.log(anchorEl)
   }
 
   const handleClose = () => {
@@ -18,8 +19,8 @@ export default function BasicMenu() {
   return (
     <div className="md:!hidden">
       <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        id="browse-button"
+        aria-controls={open ? 'browse-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
@@ -28,13 +29,13 @@ export default function BasicMenu() {
         Browse
       </Button>
       <Menu
-        id="basic-menu"
+        id="browse-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        className="menu"
+        className="browseMenu"
         MenuListProps={{
-          'aria-labelledby': 'basic-button',
+          'aria-labelledby': 'browse-button',
         }}
       >
         <MenuItem onClick={handleClose}>Home</MenuItem>

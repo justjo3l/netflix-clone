@@ -53,19 +53,31 @@
         @apply cursor-pointer text-blue-500 hover:underline; 
     }
 
-    .menu {
-        @apply md:hidden;
+    .browseMenu {
+        @apply md:!hidden;
     }
 
-    .menu .MuiPaper-root {
+    .browseMenu .MuiPaper-root {
         @apply !absolute !left-0 !rounded-none !border !border-[gray] !bg-black !text-white !border-b-0 !border-r-0 !border-l-0;
     }
 
-    .menu .MuiList-root {
+    .browseMenu .MuiList-root {
         @apply !p-0;
     }
 
-    .menu .MuiMenuItem-root {
+    .browseMenu .MuiMenuItem-root {
+        @apply !block !w-72 !py-3.5 !text-center !text-sm !font-light !text-[#b3b3b3] !transition !duration-200 first:cursor-default first:!font-normal first:!text-white hover:!bg-[#11100F];
+    }
+
+    .accountMenu .MuiPaper-root {
+        @apply !absolute !right-0 !rounded-none !border !border-[gray] !bg-black !text-white !border-b-0 !border-r-0 !border-l-0;
+    }
+
+    .accountMenu .MuiList-root {
+        @apply !p-0;
+    }
+
+    .accountMenu .MuiMenuItem-root {
         @apply !block !w-72 !py-3.5 !text-center !text-sm !font-light !text-[#b3b3b3] !transition !duration-200 first:cursor-default first:!font-normal first:!text-white hover:!bg-[#11100F];
     }
 }
