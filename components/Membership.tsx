@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useState } from "react"
 import useAuth from "../hooks/useAuth"
 import useSubscription from "../hooks/useSubscription"
@@ -42,7 +43,7 @@ function Membership() {
                             <p className="text-[gray]">Password: ********</p>
                         </div>
                         <div className="md:text-right">
-                            <p className="membershipLink">Change email</p>
+                            <p className="membershipLink"><Link href="/change-email">Change email</Link></p>
                             <p className="membershipLink">Change password</p>
                         </div>
                     </div>
