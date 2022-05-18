@@ -1,5 +1,6 @@
 import { getProducts, Product } from '@stripe/firestore-stripe-payments'
 import Head from 'next/head'
+import { Toaster } from 'react-hot-toast'
 import { useRecoilValue } from 'recoil'
 import { modalState, movieState } from '../atoms/modalAtom'
 import Banner from '../components/Banner'
@@ -55,6 +56,7 @@ const Home = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
+      <Toaster position="bottom-center"/>
       <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
         <Banner netflixOriginals={netflixOriginals}/>
         <section className="md:space-y-24">

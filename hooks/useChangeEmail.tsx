@@ -1,10 +1,9 @@
 import { auth } from '../firebase'
-import { updateEmail } from 'firebase/auth'
+import { updateEmail }from 'firebase/auth'
 
-function useChangeEmail(email: string) {
+const useChangeEmail = (email: string) => {
 
     updateEmail(auth.currentUser!, email)
 
-    return email
 }
 export default useChangeEmail

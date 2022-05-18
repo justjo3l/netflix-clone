@@ -9,6 +9,7 @@ import useChangeEmail from "../hooks/useChangeEmail";
 
 interface Inputs {
     email: string
+    password: string
 }
 
 const toastStyle = {
@@ -25,25 +26,30 @@ function changeEmail() {
     const [updated, setUpdated] = useState(false)
     const [toastId, setToastId] = useState<string>()
     const {user} = useAuth()
+    const router = useRouter()
 
-    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         if (user?.email !== data.email && updated) {
-            await useChangeEmail(data.email)
-        }
 
-        if (toastId) {
-            setToastId(toast(`${data.email} has been saved as your email address`, {
-                duration: 8000,
-                style: toastStyle,
-                id: toastId,
-              }))
-        } else {
-            setToastId(toast(`${data.email} has been saved as your email address`, {
-                duration: 8000,
-                style: toastStyle,
-              }))
+          useChangeEmail(data.email)
+          
+          router.replace('/')
+
+          if (toastId) {
+              setToastId(toast(`${data.email} has been saved as your email address`, {
+                  duration: 4000,
+                  style: toastStyle,
+                  id: toastId,
+                }))
+          } else {
+              setToastId(toast(`${data.email} has been saved as your email address`, {
+                  duration: 4000,
+                  style: toastStyle,
+                }))
+          }
+            
         }
     };
 
@@ -72,12 +78,11 @@ function changeEmail() {
         </Link>
       </header>
 
-      <Toaster position="bottom-center"/>
         <form onSubmit={handleSubmit(onSubmit)} className="relative mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14">
             <h1 className="text-4xl font-semibold">Change Email</h1>
             <div className="space-y-4">
                 <label className="inline-block w-full">
-                    <input type="email" placeholder="Email" className="input" {...register("email", {required: true})}/>
+                    <input type="email" placeholder="New Email" className="input" {...register("email", {required: true})}/>
                 </label>
             </div>
 
